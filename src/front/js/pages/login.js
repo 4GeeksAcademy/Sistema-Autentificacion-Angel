@@ -12,6 +12,7 @@ export const Login = props => {
     return (
         <div className="container mt-5 d-flex align-items-center justify-content-center">
           <form className="form">
+          <p class="title">Login </p>
             <div className="input-span">
               <label htmlFor="email" className="label">
                 Email

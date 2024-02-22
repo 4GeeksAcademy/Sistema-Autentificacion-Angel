@@ -6,6 +6,7 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 
+
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
@@ -20,3 +21,34 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route("/login", methods=["GET"])
+def login():
+    user = request.get_json()
+
+    if "email" not in user or "password" not in user:
+        return jsonify({"error": "Missing email or password"}), 400
+
+
+
+@api.route("/signup", methods=["POST"])
+def create_user():
+    # Validación de entrada
+    if "email" not in body or "password" not in body:
+        return jsonify({"error": "Missing email or password"}), 400
+
+    # Verificar si el usuario ya existe
+    existing_user = User.query.filter_by(email=body["email"]).first()
+    if existing_user:
+        return jsonify({"error": "Email already registered"}), 409
+    
+    body = request.get_json()
+    new_user = User()
+    new_user.email = body.get("email")
+    new_user.password = body.get("password")
+    new_user.is_active = body.get("is_active")
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({'message':'Usuario creado con éxito'}), 200

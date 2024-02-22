@@ -12,19 +12,7 @@ export const SignUp = () => {
 			<form class="form">
 				<p class="title">Sign up </p>
 				<p class="message">Signup now and get full access to our app. </p>
-				<div class="flex">
-					<label>
-						<input class="input" type="text" placeholder="" required="" />
-						<span>Firstname</span>
-					</label>
-
-					<label>
-						<input class="input" type="text" placeholder="" required="" />
-						<span>Lastname</span>
-					</label>
-				</div>
-
-				<label>
+                <label>
 					<input class="input" type="email" placeholder="" required="" />
 					<span>Email</span>
 				</label>
