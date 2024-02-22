@@ -7,6 +7,7 @@ from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 
 
+
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
@@ -22,12 +23,18 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route("/login", methods=["GET"])
+@api.route("/login", methods=["POST"])
 def login():
-    user = request.get_json()
 
-    if "email" not in user or "password" not in user:
-        return jsonify({"error": "Missing email or password"}), 400
+    email = request.json.get('email')
+    password = request.json.get('password')
+    user_exist = User.query.filter_by(email=email, password=password).first()
+
+    if user_exist:
+        access_token = create_access_token(identity=email)
+        return jsonify(access_token=access_token), 200
+    else:
+        return jsonify({"msg": "Incorrect user or password"}), 401
 
 
 
