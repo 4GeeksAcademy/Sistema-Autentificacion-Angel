@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/footer.css";
 
 import { Context } from "../store/appContext";
@@ -8,6 +8,9 @@ export const SignUp = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
+	
+
 
 	return (
 		<div className="container mt-5 d-flex align-items-center justify-content-center">
@@ -26,10 +29,11 @@ export const SignUp = () => {
 					<span>Password</span>
 				</label>
 				<div className="text-center">
-				<Link to="/login" className="submit" onClick={(e) => {
+					<button className="submit" onClick={(e) => {
 						e.preventDefault();
 						actions.signup(email, password);
-					}}>Crear Usuario</Link>
+						navigate('/login');
+					}}>Crear Usuario</button> 
 				</div>
 			</form>
 		</div>

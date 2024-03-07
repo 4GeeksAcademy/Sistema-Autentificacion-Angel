@@ -7,11 +7,12 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import { SignUp } from "./pages/signup";
 import { Login } from "./pages/login"
-import { Private } from "./pages/private";
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import Private from "./pages/Private";
 
 //create your first component
 const Layout = () => {
