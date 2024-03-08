@@ -30,7 +30,7 @@ def login():
 
     data = request.get_json()
     email = data.get("email")
-    password = data.get ("password")
+    password = data.get ("password") 
     if not email or not password: 
         return jsonify("email and password are required")
 
@@ -47,7 +47,7 @@ def get_users():
     users = User.query.all()
     users = list(map (lambda user: user.serialize(), users))
     
-    return jsonify(users), 200
+    return jsonify(users), 200 
     
 
 @api.route("/private/<int:user_id>", methods=["GET"])
@@ -65,7 +65,7 @@ def validate_token(user_id):
 @api.route("/signup", methods=["POST"])
 def create_user():
 
-    data = request.get_json()
+    data = request.get_json() 
 
     email = data.get("email")
     password = data.get("password")
